@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'IAM User Manager
+
+  '
+Globals:
+  Function:
+    Timeout: 3
+Metadata:
+  AWS::ServerlessRepo::Application:
+    Name: iam-user-manager
+    Description: Serverless App to manage AWS IAM users
+    Author: abhijeetdeshkar
+Resources:
+  IAMUserManager:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://iamusermanager/ba0314ad12b0461dbb588f44e02632d1
+      Handler: app.app
+      Runtime: python3.6
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /
+            Method: get
