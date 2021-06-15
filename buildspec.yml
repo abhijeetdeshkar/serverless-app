@@ -1,0 +1,11 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+        python: 3.6
+  build:
+    commands:
+      - sam package --template-file template.yaml --s3-bucket iamusermanager --output-template-file packaged-template.yml
+artifacts:
+  files:
+    - packaged-template.yml
