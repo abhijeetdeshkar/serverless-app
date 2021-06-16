@@ -15,18 +15,36 @@ Metadata:
 
 
 Resources:
-  IAMUserManager:
+  ApiGatewayApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: dev
+  ApiFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: flask-app/
-      Handler: app.app
-      Runtime: python3.6
       Events:
-        HelloWorld:
+        ApiEvent:
           Type: Api
           Properties:
-            Path: /
-            Method: get
+            Ref: ApiGatewayApi
+      Runtime: python3.7
+      Handler: app.app
+      InlineCode: |
+        def handler(event, context):
+            return {'body': 'HELLOWORLD', 'statusCode': 200}
+
+#  IAMUserManager:
+#    Type: AWS::Serverless::Function
+#    Properties:
+#      CodeUri: flask-app/
+#      Handler: app.app
+#      Runtime: python3.6
+#      Events:
+#        HelloWorld:
+#          Type: Api
+#          Properties:
+#            Path: /
+#            Method: get
 
 Outputs:
   HelloWorldApi:
