@@ -13,51 +13,88 @@ Metadata:
     Description: Serverless App to manage AWS IAM users
     Author: abhijeetdeshkar
 
+Parameters:
+  ExecEnv:
+    Type: String
+    AllowedValues:
+      - local
+      - dev
+      - stage
+      - prod
+    Default: prod
+  IAMUsersTableName:
+    Type: String
+    Default: user-list
+
+
 Resources:
-  ApiGatewayApi:
-    Type: AWS::Serverless::Api
-    Properties:
-      StageName: prod
-  ApiFunction: # Adds a GET api endpoint at "/" to the ApiGatewayApi via an Api event
+  IAMUserManager:
     Type: AWS::Serverless::Function
     Properties:
+      CodeUri: flask-app/
+      Handler: app.app
+      Runtime: python3.6
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref IAMUsersTableName
+          REGION_NAME: !Ref AWS::Region
+          EXEC_ENV: !Ref ExecEnv
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref IAMUsersTable
       Events:
-        ApiEvent:
+        HelloWorld:
           Type: Api
           Properties:
             Path: /
             Method: get
-            RestApiId:
-              Ref: ApiGatewayApi
-      Runtime: python3.7
-      Handler: index.handler
-      InlineCode: |
-        def handler(event, context):
-            return {'body': 'HELLO WORLD!', 'statusCode': 200}
-#Resources:
-#  IAMUserManager:
-#    Type: AWS::Serverless::Function
-#    Properties:
-#      CodeUri: flask-app/
-#      Handler: app.app
-#      Runtime: python3.6
-#      Events:
-#        HelloWorld:
-#          Type: Api
-#          Properties:
-#            Path: /
-#            Method: get
+        SyncUsersList:
+          Type: Api
+          Properties:
+            Path: /sync-users
+            Method: get
+        GetUserInfo:
+          Type: Api
+          Properties:
+            Path: /get-user/{user_name}
+            Method: get
+        ShowUsersList:
+          Type: Api
+          Properties:
+            Path: /list-iam-users
+            Method: get
+        Createuser:
+          Type: Api
+          Properties:
+            Path: /create-iam-users
+            Method: post
+        DeleteUser:
+          Type: Api
+          Properties:
+            Path: /delete-iam-users
+            Method: post
+
+  IAMUsersTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Ref IAMUsersTableName
+      AttributeDefinitions:
+        - AttributeName: userId
+          AttributeType: S
+        KeySchema:
+          - AttributeName: userId
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
 
 Outputs:
-  HelloWorldApi:
+  IAMUserManagerApi:
     Description: "API Gateway endpoint URL for Prod stage for Hello World function"
     Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
-  ListUsersApi:
-    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/list-iam-users"
   IAMUserManager:
     Description: "IAMUserManager Lambda Function ARN"
     Value: !GetAtt IAMUserManager.Arn
-  HelloWorldFunctionIamRole:
+  IAMUserManagerIamRole:
     Description: "Implicit IAM Role created for IAMUserManager function"
     Value: !GetAtt IAMUserManagerRole.Arn

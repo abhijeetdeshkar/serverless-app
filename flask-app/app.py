@@ -8,7 +8,7 @@ from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-USERS_TABLE = os.environ.get('USERS_TABLE') or "users-table-dev"
+USERS_TABLE = os.environ.get('TABLE_NAME') or "users-table-dev"
 client = boto3.client("dynamodb")
 iam_client = boto3.client("iam")
 
