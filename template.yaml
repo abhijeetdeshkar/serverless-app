@@ -27,4 +27,22 @@ Resources:
           Properties:
             Path: /
             Method: get
+        ListUsers:
+          Type: Api
+            Properties:
+              Path: /
+              Method: get
 
+Outputs:
+  HelloWorldApi:
+    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
+  ListUsersApi:
+    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/list-iam-users"
+  IAMUserManager:
+    Description: "IAMUserManager Lambda Function ARN"
+    Value: !GetAtt IAMUserManager.Arn
+  HelloWorldFunctionIamRole:
+    Description: "Implicit IAM Role created for IAMUserManager function"
+    Value: !GetAtt IAMUserManagerRole.Arn
