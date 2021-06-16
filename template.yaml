@@ -27,11 +27,6 @@ Resources:
           Properties:
             Path: /
             Method: get
-        ListUsers:
-          Type: Api
-            Properties:
-              Path: /
-              Method: get
 
 Outputs:
   HelloWorldApi:
