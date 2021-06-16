@@ -81,9 +81,9 @@ Resources:
       AttributeDefinitions:
         - AttributeName: userId
           AttributeType: S
-        KeySchema:
-          - AttributeName: userId
-            KeyType: HASH
+      KeySchema:
+        - AttributeName: userId
+          KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
