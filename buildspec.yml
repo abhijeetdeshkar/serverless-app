@@ -5,10 +5,7 @@ phases:
         python: 3.7
   build:
     commands:
-      - npm install serverless
-      - npm install serverless-wsgi serverless-python-requirements
-      - cd flaskapp
-      - serverless deploy
+      - ./execute.sh
 artifacts:
   files:
     - packaged-template.yml
