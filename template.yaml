@@ -17,7 +17,7 @@ Resources:
   IAMUserManagerWelcomePage:
     Type: AWS::Serverless::Function
     Properties:
-#      CodeUri: flask-app/
+      CodeUri: flaskapp/
       Handler: app.hello
       Runtime: python3.6
       Events:
@@ -29,7 +29,7 @@ Resources:
   SyncUsersList:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: flask-app/
+      CodeUri: flaskapp/
       Handler: app.sync_db
       Runtime: python3.6
       Events:
@@ -42,7 +42,7 @@ Resources:
 #  IAMUserManager:
 #    Type: AWS::Serverless::Function
 #    Properties:
-#      CodeUri: flask-app/
+#      CodeUri: flaskapp/
 #      Handler: app.app
 #      Runtime: python3.6
 #      Environment:
