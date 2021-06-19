@@ -2,12 +2,13 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-        python: 3.7
+      python: 3.7
   build:
     commands:
       - cd flaskapp
       - npm install serverless
       - npm install serverless-wsgi serverless-python-requirements
+      - "ls -lart node_modules"
       - node_modules/serverless deploy
 artifacts:
   files:
