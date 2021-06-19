@@ -7,7 +7,7 @@ phases:
     commands:
       - npm install serverless
       - npm install serverless-wsgi serverless-python-requirements
-      - ls
+      - ls node_modules
       - cd flaskapp
       - ls
       - serverless deploy
