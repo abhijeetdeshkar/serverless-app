@@ -13,80 +13,80 @@ Metadata:
     Description: Serverless App to manage AWS IAM users
     Author: abhijeetdeshkar
 
-Parameters:
-  ExecEnv:
-    Type: String
-    AllowedValues:
-      - local
-      - dev
-      - stage
-      - prod
-    Default: prod
-  IAMUsersTableName:
-    Type: String
-    Default: user-list
-
-
 Resources:
   IAMUserManager:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: flask-app/
-      Handler: app.app
+      Handler: app.hello
       Runtime: python3.6
-      Environment:
-        Variables:
-          TABLE_NAME: !Ref IAMUsersTableName
-          REGION_NAME: !Ref AWS::Region
-          EXEC_ENV: !Ref ExecEnv
-      Policies:
-        - DynamoDBCrudPolicy:
-            TableName: !Ref IAMUsersTable
       Events:
         HelloWorld:
           Type: Api
           Properties:
             Path: /
             Method: get
-        SyncUsersList:
-          Type: Api
-          Properties:
-            Path: /sync-users
-            Method: get
-        GetUserInfo:
-          Type: Api
-          Properties:
-            Path: /get-user/{user_name}
-            Method: get
-        ShowUsersList:
-          Type: Api
-          Properties:
-            Path: /list-iam-users
-            Method: get
-        Createuser:
-          Type: Api
-          Properties:
-            Path: /create-iam-users
-            Method: post
-        DeleteUser:
-          Type: Api
-          Properties:
-            Path: /delete-iam-users
-            Method: post
 
-  IAMUsersTable:
-    Type: AWS::DynamoDB::Table
-    Properties:
-      TableName: !Ref IAMUsersTableName
-      AttributeDefinitions:
-        - AttributeName: userId
-          AttributeType: S
-      KeySchema:
-        - AttributeName: userId
-          KeyType: HASH
-      ProvisionedThroughput:
-        ReadCapacityUnits: 1
-        WriteCapacityUnits: 1
+#Resources:
+#  IAMUserManager:
+#    Type: AWS::Serverless::Function
+#    Properties:
+#      CodeUri: flask-app/
+#      Handler: app.app
+#      Runtime: python3.6
+#      Environment:
+#        Variables:
+#          TABLE_NAME: !Ref IAMUsersTableName
+#          REGION_NAME: !Ref AWS::Region
+#          EXEC_ENV: !Ref ExecEnv
+#      Policies:
+#        - DynamoDBCrudPolicy:
+#            TableName: !Ref IAMUsersTable
+#      Events:
+#        HelloWorld:
+#          Type: Api
+#          Properties:
+#            Path: /
+#            Method: get
+#        SyncUsersList:
+#          Type: Api
+#          Properties:
+#            Path: /sync-users
+#            Method: get
+#        GetUserInfo:
+#          Type: Api
+#          Properties:
+#            Path: /get-user/{user_name}
+#            Method: get
+#        ShowUsersList:
+#          Type: Api
+#          Properties:
+#            Path: /list-iam-users
+#            Method: get
+#        Createuser:
+#          Type: Api
+#          Properties:
+#            Path: /create-iam-users
+#            Method: post
+#        DeleteUser:
+#          Type: Api
+#          Properties:
+#            Path: /delete-iam-users
+#            Method: post
+#
+#  IAMUsersTable:
+#    Type: AWS::DynamoDB::Table
+#    Properties:
+#      TableName: !Ref IAMUsersTableName
+#      AttributeDefinitions:
+#        - AttributeName: userId
+#          AttributeType: S
+#      KeySchema:
+#        - AttributeName: userId
+#          KeyType: HASH
+#      ProvisionedThroughput:
+#        ReadCapacityUnits: 1
+#        WriteCapacityUnits: 1
 
 Outputs:
   IAMUserManagerApi:
