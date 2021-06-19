@@ -3,9 +3,11 @@ phases:
   install:
     runtime-versions:
         python: 3.7
+    commands:
+      - npm install -g serverless
   build:
     commands:
-      - sam package --template-file template.yaml --s3-bucket iamusermanager --output-template-file packaged-template.yml
+      - sls deploy
 artifacts:
   files:
     - packaged-template.yml

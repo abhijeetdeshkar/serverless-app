@@ -15,7 +15,7 @@ iam_client = boto3.client("iam")
 
 @app.route("/")
 def hello():
-    return "Hello World!!!!!! {0}".format(datetime.datetime.now())
+    return {"statusCode": 200, "body": "Hello World!"}
 
 
 @app.route("/sync-users")
