@@ -9,7 +9,6 @@ phases:
   build:
     commands:
       - cd flaskapp
-      - which sls
       - which serverless
       - serverless deploy
 artifacts:
