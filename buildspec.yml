@@ -7,6 +7,7 @@ phases:
       - npm install -g serverless
   build:
     commands:
+      - cd flaskapp
       - sls deploy
 artifacts:
   files:
