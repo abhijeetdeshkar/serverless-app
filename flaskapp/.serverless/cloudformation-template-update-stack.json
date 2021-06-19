@@ -181,7 +181,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverless-flask/dev/1624095689311-2021-06-19T09:41:29.311Z/serverless-flask.zip"
+          "S3Key": "serverless/serverless-flask/dev/1624100430861-2021-06-19T11:00:30.861Z/serverless-flask.zip"
         },
         "Handler": "wsgi_handler.handler",
         "Runtime": "python3.6",
@@ -204,14 +204,14 @@
         "AppLogGroup"
       ]
     },
-    "AppLambdaVersionMze5xMFq2XzMbZrsHZchQZTk175r9oxsWL3gmYfU0": {
+    "AppLambdaVersionNB7f5VUxYJjZuCvVCMWLui26OGRfljV8lEiVVI1GXY": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AppLambdaFunction"
         },
-        "CodeSha256": "GL/e3xFYTSkV+s5oLvnyZWKfvxmLwsNvgHofiZ60dgM="
+        "CodeSha256": "aH6keqSmSTURzL3A8KqcrGpkKKCPwIc+r3e+TGLYJAc="
       }
     },
     "ApiGatewayRestApi": {
@@ -330,7 +330,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1624095673922": {
+    "ApiGatewayDeployment1624100415824": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -415,7 +415,7 @@
     "AppLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AppLambdaVersionMze5xMFq2XzMbZrsHZchQZTk175r9oxsWL3gmYfU0"
+        "Ref": "AppLambdaVersionNB7f5VUxYJjZuCvVCMWLui26OGRfljV8lEiVVI1GXY"
       },
       "Export": {
         "Name": "sls-serverless-flask-dev-AppLambdaFunctionQualifiedArn"
