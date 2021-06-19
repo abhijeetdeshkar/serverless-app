@@ -21,7 +21,7 @@ Resources:
       Handler: app.hello
       Runtime: python3.6
       Events:
-        HelloWorld:
+        IAMUserManagerApi:
           Type: Api
           Properties:
             Path: /
