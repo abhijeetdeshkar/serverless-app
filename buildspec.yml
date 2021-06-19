@@ -9,7 +9,7 @@ phases:
       - npm install serverless
       - npm install serverless-wsgi serverless-python-requirements
       - "ls -lart node_modules"
-      - node_modules/serverless deploy
+      - sudo node_modules/serverless deploy
 artifacts:
   files:
     - packaged-template.yml
