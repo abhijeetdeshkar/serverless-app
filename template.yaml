@@ -17,7 +17,7 @@ Resources:
   IAMUserManagerWelcomePage:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: flask-app/
+#      CodeUri: flask-app/
       Handler: app.hello
       Runtime: python3.6
       Events:
