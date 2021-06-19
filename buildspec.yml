@@ -8,7 +8,7 @@ phases:
       - cd flaskapp
       - npm install serverless
       - npm install serverless-wsgi serverless-python-requirements
-      - npm ls -g --depth 0
+      - npm list -g --depth 0
 #      - /bin/bash node_modules/serverless deploy
 artifacts:
   files:
