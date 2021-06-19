@@ -10,7 +10,7 @@ phases:
       - ls node_modules
       - cd flaskapp
       - ls
-      - serverless deploy
+      - $CODEBUILD_SRC_DIR/node_modules/serverless deploy
 artifacts:
   files:
     - packaged-template.yml
