@@ -4,7 +4,8 @@ phases:
     runtime-versions:
         python: 3.7
     commands:
-      - npm install -g serverless
+      - npm install serverless
+      - npm install --save-dev serverless-wsgi serverless-python-requirements
   build:
     commands:
       - cd flaskapp
