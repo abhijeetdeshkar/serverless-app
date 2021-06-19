@@ -14,19 +14,30 @@ Metadata:
     Author: abhijeetdeshkar
 
 Resources:
-  IAMUserManager:
+  IAMUserManagerWelcomePage:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: flask-app/
       Handler: app.hello
       Runtime: python3.6
       Events:
-        IAMUserManagerApi:
+        GetResource:
           Type: Api
           Properties:
             Path: /
             Method: get
-
+  SyncUsersList:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: flask-app/
+      Handler: app.sync_db
+      Runtime: python3.6
+      Events:
+        GetResource:
+          Type: Api
+          Properties:
+            Path: /sync-users
+            Method: get
 #Resources:
 #  IAMUserManager:
 #    Type: AWS::Serverless::Function
