@@ -6,10 +6,12 @@ phases:
   build:
     commands:
       - cd flaskapp
-      - npm install serverless
-      - npm install serverless-wsgi serverless-python-requirements
+      - npm install
+#      - npm install --save-dev serverless
+#      - npm install --save-dev serverless-wsgi serverless-python-requirements
       - npm list -g --depth 0
-      - ls $CODEBUILD_SRC_DIR/flaskapp/node_modules/serverless/*
+      - which serverless
+#      - ls $CODEBUILD_SRC_DIR/flaskapp/node_modules/serverless/*
 #      - /bin/bash node_modules/serverless deploy
 artifacts:
   files:
