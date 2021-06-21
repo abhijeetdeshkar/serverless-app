@@ -19,7 +19,7 @@ phases:
       - npm list -g --depth 0
 #      - ls $CODEBUILD_SRC_DIR/flaskapp/node_modules/serverless/*
       - which serverless
-#      - /bin/bash node_modules/serverless deploy
+#      - /bin/bash node_modules/serverless deploy #
       - serverless deploy
 artifacts:
   files:
