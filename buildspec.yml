@@ -10,7 +10,7 @@ phases:
 #      - export PATH=$CODEBUILD_SRC_DIR/npm-global/bin:$PATH
 #      - source ~/.profile
       - curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-      - python get-pip.py
+      - /usr/bin/python3.6 get-pip.py
       - npm install -g serverless --unsafe-perm=true --allow-root
       - cd flaskapp
 #      - npm install
