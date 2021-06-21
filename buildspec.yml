@@ -9,14 +9,14 @@ phases:
 #      - npm config set prefix '$CODEBUILD_SRC_DIR/npm-global'
 #      - export PATH=$CODEBUILD_SRC_DIR/npm-global/bin:$PATH
 #      - source ~/.profile
-      - npm install -g serverless
+      - npm install -g serverless --unsafe-perm=true --allow-root
       - cd flaskapp
 #      - npm install
 #      - npm install --save-dev serverless
-      - npm install --save-dev serverless-wsgi serverless-python-requirements
+      - npm install --save-dev serverless-wsgi serverless-python-requirements --unsafe-perm=true --allow-root
       - npm list -g --depth 0
 #      - ls $CODEBUILD_SRC_DIR/flaskapp/node_modules/serverless/*
-      - which serverless
+#      - which serverless
 #      - /bin/bash node_modules/serverless deploy
 artifacts:
   files:
