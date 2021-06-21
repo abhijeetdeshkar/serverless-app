@@ -5,10 +5,10 @@ phases:
       python: 3.7
   build:
     commands:
-      - mkdir -p $CODEBUILD_SRC_DIR/npm-global
-      - npm config set prefix '$CODEBUILD_SRC_DIR/npm-global'
-      - export PATH=$CODEBUILD_SRC_DIR/npm-global/bin:$PATH
-      - source ~/.profile
+#      - mkdir -p $CODEBUILD_SRC_DIR/npm-global
+#      - npm config set prefix '$CODEBUILD_SRC_DIR/npm-global'
+#      - export PATH=$CODEBUILD_SRC_DIR/npm-global/bin:$PATH
+#      - source ~/.profile
       - npm install -g serverless
       - cd flaskapp
 #      - npm install
